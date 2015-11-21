@@ -1,4 +1,4 @@
-https://travis-ci.org/dabellator/word-guesser.svg?branch=master
+[![Build Status](https://travis-ci.org/dabellator/word-guesser.svg?branch=master)](https://travis-ci.org/dabellator/word-guesser)
 
 # Wordbreaker
 ### A simple game to guess a random word.
