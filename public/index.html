@@ -1,96 +1,98 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src='https://code.jquery.com/jquery-1.9.1.min.js'></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  <head>
-  <body>
-    <div id="rulesDialog" title="Rules">
-      Specify your options and click 'give me a word' to begin. 
-      <br><br> After each guess, you will be given feedback to help you figure out the word. 
-      <br><br> For example, if the solution is 'cat' and you guess 'dog', you will see this:
-      <br> <table id="feedback"><tr><td class="none">d</td><td class="none">o</td><td class="none">g</td></tr></table>
-      <br> The red letters mean there is no 'd', 'o', or 'g' in the word you are guessing. 
-      <br><br> If you then guessed 'tap', you would see this:
-      <br> <table id="feedback"><tr><td class="half">t</td><td class="full">a</td><td class="none">p</td></tr></table>
-      <br> The yellow 't' means the solution contains 't', but not at the same position. 
-      <br><br> The green 'a' means the solution contains 'a', and at the same position (second letter in the word).
-      <br><br> Now you know 'a' is the second letter. You also know 't' is in the word, but it's not the first letter. 
-      <br><br> So it must be the third! Finally, you guess 'cat'. 
-      <br> <table id="feedback"><tr><td class="full">c</td><td class="full">a</td><td class="full">t</td></tr></table>
-      <br> Wow, you're a natural! Hit 'esc' key to close rules.
-    </div>
-    <button id="showRules">show rules</button>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
 
-    <table id="history"></table>
-    <table id="untried"></table>
-    <button id="hideUntried">hide untried letters</button>
+	<head>
+	<body>
 
-    <div id="container">
-      <div id="title">wor<span style="color:#cc0000">db</span>reaker</div>
+		<div id="rulesDialog" title="Rules">
+			Specify your options and click 'give me a word' to begin. 
+			<br><br> After each guess, you will be given feedback to help you figure out the word. 
+			<br><br> For example, if the solution is 'cat' and you guess 'dog', you will see this:
+			<br> <table id="feedback"><tr><td class="none">d</td><td class="none">o</td><td class="none">g</td></tr></table>
+			<br> The red letters mean there is no 'd', 'o', or 'g' in the word you are guessing. 
+			<br><br> If you then guessed 'tap', you would see this:
+			<br> <table id="feedback"><tr><td class="half">t</td><td class="full">a</td><td class="none">p</td></tr></table>
+			<br> The yellow 't' means the solution contains 't', but not at the same position. 
+			<br><br> The green 'a' means the solution contains 'a', and at the same position (second letter in the word).
+			<br><br> Now you know 'a' is the second letter. You also know 't' is in the word, but it's not the first letter. 
+			<br><br> So it must be the third! Finally, you guess 'cat'. 
+			<br> <table id="feedback"><tr><td class="full">c</td><td class="full">a</td><td class="full">t</td></tr></table>
+			<br> Wow, you're a natural! Hit 'esc' key to close rules.
+		</div>
+		<button id="showRules">show rules</button>
 
-      <form id="options">
-        <label>category:</label>
-        <select id="category">
-          <option value="all">all</option>
-          <option value="animals">animals</option>
-          <option value="clothes">clothes</option>
-          <option value="flowers">flowers</option>
-          <option value="fruits">fruits</option>
-          <option value="vegetables">veggies</option>
-        </select>
-        <label>letters:</label>
-        <select id="letters">
-          <option value="any">any</option>	
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
-        <input type="radio" name="mode" id="normal" checked> normal
-        <input type="radio" name="mode" id="hard"> hard
-      </form>
+		<table id="history"></table>
+		<table id="untried"></table>
+		<button id="hideUntried">hide untried letters</button>
 
-      <div id="newgame" onclick="makeGame()">give me a word</div>
+		<div id="container">
+			<div id="title">wor<span style="color:#cc0000">db</span>reaker</div>
 
-      <form id="guessForm">
-      <input id="guessInput" type="text" maxlength="8" value="">
-      </form> 
+			<form id="options">
+				<label>category:</label>
+				<select id="category">
+			    <option value="all">all</option>
+			    <option value="animals">animals</option>
+			    <option value="clothes">clothes</option>
+			    <option value="flowers">flowers</option>
+			    <option value="fruits">fruits</option>
+			    <option value="vegetables">veggies</option>
+			  </select>
+			  <label>letters:</label>
+				<select id="letters">
+			    <option value="any">any</option>	
+			    <option value="3">3</option>
+			    <option value="4">4</option>
+			    <option value="5">5</option>
+			    <option value="6">6</option>
+			    <option value="7">7</option>
+			    <option value="8">8</option>
+			  </select>
+			  <input type="radio" name="mode" id="normal" checked> normal
+			  <input type="radio" name="mode" id="hard"> hard
+			</form>
 
-      <div id="signIn">
-        <div id="signInError"> sign in to wordbreaker </div>
-        <br><label> username: </label><input id="user" type="text" maxlength="10" value="">
-        <br><br><label> password: </label><input id="pass" type="password" maxlength="10" value="">
-        <br><br><button id="signInButton" onclick="signIn()"> click to sign in </button>
-      </div>
+			<div id="newgame" onclick="makeGame()">give me a word</div>
 
-      <div id="signUp">
-        <div id="signUpError"> sign up for wordbreaker </div>
-        <br><label> username: </label><input id="newUser" type="text" maxlength="10" value="">
-        <br><br><label> password: </label><input id="newPass" type="password" maxlength="10" value="">
-        <br><br><label> repeated: </label><input id="repeatPass" type="password" maxlength="10" value="">
-        <br><br><button id="signUpButton" onclick="signUp()"> click to sign up </button>
-      </div>
+			<form id="guessForm">
+				<input id="guessInput" type="text" maxlength="8" value="">
+			</form> 
 
-      <div id="userStatsContainer">
-        <div id="userStatsHeader"> your stats </div>
-        <div id="userStats"></div>
-      </div>
+			<div id="signIn">
+				<div id="signInError"> sign in to wordbreaker </div>
+				<br><label> username: </label><input id="user" type="text" maxlength="10" value="">
+				<br><br><label> password: </label><input id="pass" type="password" maxlength="10" value="">
+				<br><br><button id="signInButton" onclick="signIn()"> click to sign in </button>
+			</div>
 
-      <button id="showSignUp" onclick="showSignUp()">show signup</button>
-      <button id="showSignIn" onclick="showSignIn()">show signin</button>
-      <button id="loggedIn"></button>
+			<div id="signUp">
+				<div id="signUpError"> sign up for wordbreaker </div>
+				<br><label> username: </label><input id="newUser" type="text" maxlength="10" value="">
+				<br><br><label> password: </label><input id="newPass" type="password" maxlength="10" value="">
+				<br><br><label> repeated: </label><input id="repeatPass" type="password" maxlength="10" value="">
+				<br><br><button id="signUpButton" onclick="signUp()"> click to sign up </button>
+			</div>
 
-      <div id="stats"></div>
+			<div id="userStatsContainer">
+				<div id="userStatsHeader"> your stats </div>
+				<div id="userStats"></div>
+			</div>
 
-      <div id="guess" onclick="guess()">guess</div>
+			<button id="showSignUp" onclick="showSignUp()">show signup</button>
+			<button id="showSignIn" onclick="showSignIn()">show signin</button>
+			<button id="loggedIn"></button>
 
-      <table id="feedback"></table>
-    </div>
-    <script src="script.js"></script>
-  </body>
+			<div id="stats"></div>
+
+			<div id="guess" onclick="guess()">guess</div>
+
+			<table id="feedback"></table>
+		</div>
+		<script src='https://code.jquery.com/jquery-1.9.1.min.js'></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+		<script src='js/client.js'></script>
+	</body>
 </html>
 
