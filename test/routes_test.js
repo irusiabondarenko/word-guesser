@@ -51,6 +51,6 @@ describe('The game routes', function() {
         expect(res.body.gameOver).to.eql(true);
         done();
       }.bind(this));
-  })
+  });
 });
 
