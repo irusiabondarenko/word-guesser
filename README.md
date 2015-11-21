@@ -1,3 +1,5 @@
+https://travis-ci.org/dabellator/word-guesser.svg?branch=master
+
 # Wordbreaker
 ### A simple game to guess a random word.
 
