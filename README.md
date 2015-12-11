@@ -8,6 +8,8 @@ You can build wordbreaker on your local machine using `npm start`.  This will po
 
 This process will also start the game server.  Now you can navigate to localhost:3000 to play the game.
 
+The game deployed to heroku: http://wordbreaker.herokuapp.com
+
 ## Game instructions
 Gameplay instructions can be read in game by clicking 'show rules' in the upper right hand corner.
 
